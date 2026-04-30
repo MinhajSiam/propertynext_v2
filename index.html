@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vavian - Real Estate</title>
-    <!-- Tailwind CSS CDN -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -18,7 +19,7 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        brandLime: '#cbfb00', // The neon yellow/green color
+                        brandLime: '#cbfb00', // The neon yellow/green color from the design
                     }
                 }
             }
@@ -26,7 +27,6 @@
     </script>
 
     <style>
-        /* Custom animations for smooth load */
         .fade-in-up {
             animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
@@ -41,10 +41,6 @@
             animation-delay: 200ms;
         }
 
-        .delay-300 {
-            animation-delay: 300ms;
-        }
-
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -54,22 +50,17 @@
     </style>
 </head>
 
-<body class="font-sans antialiased text-white overflow-x-hidden">
+<body class="font-sans antialiased text-white overflow-x-hidden bg-[#f8f9fa]">
 
-    <!-- Hero Section with Background -->
     <section class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
         style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
 
-        <!-- Dark Overlay for better text readability -->
         <div class="absolute inset-0 bg-black/40 bg-gradient-to-r from-black/60 to-transparent"></div>
 
-        <!-- Navbar -->
         <nav class="absolute top-0 left-0 w-full px-6 py-6 z-50 flex justify-between items-center">
 
-            <!-- Left Side: Logo & Links (Glassmorphism Pill) -->
             <div
                 class="flex items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 shadow-lg">
-                <!-- Logo -->
                 <a href="#" class="flex items-center gap-1 mr-10">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                         class="text-brandLime">
@@ -78,7 +69,6 @@
                     <span class="text-2xl font-bold tracking-tight">vavian</span>
                 </a>
 
-                <!-- Navigation Links -->
                 <ul class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-100">
                     <li><a href="#"
                             class="text-brandLime flex items-center gap-1 hover:text-brandLime transition-colors">Home
@@ -110,14 +100,11 @@
                 </ul>
             </div>
 
-            <!-- Right Side: Contact Details & CTA -->
             <div class="hidden md:flex items-center gap-4">
-                <!-- Phone Number (Glassmorphism Pill) -->
                 <a href="tel:+480123678900"
                     class="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-3 hover:bg-white/20 transition-all shadow-lg">
                     <div class="bg-brandLime text-black rounded-full p-1.5">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
                             </path>
@@ -125,20 +112,16 @@
                     </div>
                     <span class="text-sm font-semibold tracking-wide">(+480) 123 678 900</span>
                 </a>
-
-                <!-- Get In Touch Button -->
                 <a href="#"
                     class="bg-brandLime text-black font-semibold text-sm rounded-full px-6 py-3 flex items-center gap-2 hover:bg-lime-300 transition-all shadow-lg shadow-brandLime/20">
                     Get In Touch
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
                 </a>
             </div>
 
-            <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center">
                 <button class="bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-full text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,57 +132,41 @@
             </div>
         </nav>
 
-        <!-- Hero Content -->
         <div class="relative z-10 h-screen flex flex-col justify-center px-8 md:px-20 max-w-5xl">
-            <!-- Main Heading -->
             <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.1] tracking-tight fade-in-up">
                 We Delight In <br>
                 Making Dreams <br>
                 A Reality
             </h1>
-
-            <!-- Subtext -->
             <p class="mt-6 text-lg md:text-xl text-gray-200 max-w-2xl font-light fade-in-up delay-100">
                 Whether it's your home, office, or a commercial project, we are always dedicated to bringing your vision
                 to life.
             </p>
-
-            <!-- CTA Button -->
             <div class="mt-10 fade-in-up delay-200">
                 <a href="#"
                     class="inline-flex items-center gap-3 bg-brandLime text-black font-semibold text-base rounded-full px-8 py-4 hover:bg-lime-300 transition-all shadow-xl shadow-brandLime/20">
                     View Services
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
                 </a>
             </div>
         </div>
-
-    </section>
-    <!-- Hero Section (image_0.png) শেষ হলো -->
-
-    <!-- Hero Section (আগের মতোই থাকবে) -->
-    <section class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
-        style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
-        <!-- Hero Overlay & Content... -->
     </section>
 
-    <!-- Stats & Features Section (Overlapping Effect) -->
-    <section class="bg-[#f8f9fa] relative pb-24">
+    <section class="relative pb-24">
 
-        <!-- ওভারল্যাপ করার জন্য এই div-এ -mt-32 বা -mt-40 ব্যবহার করা হয়েছে -->
         <div class="max-w-7xl mx-auto px-6 relative z-30 -mt-28 md:-mt-40">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
 
                 <!-- Card 1: 2800+ -->
                 <div
-                    class="scroll-card opacity-0 translate-y-12 transition-all duration-[800ms] ease-out bg-white rounded-[2rem] p-10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] flex flex-col justify-between group">
+                    class="scroll-card opacity-0 translate-y-12 transition-all duration-[800ms] hover:duration-500 ease-out bg-white hover:bg-brandLime rounded-[2rem] p-10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] flex flex-col justify-between group cursor-pointer">
                     <div class="flex justify-end">
+                        <!-- ডটটি হোভার করলে কালো হবে যাতে ব্যাকগ্রাউন্ডের সাথে মিশে না যায় -->
                         <span
-                            class="w-2.5 h-2.5 bg-brandLime/50 rounded-full group-hover:scale-150 transition-transform duration-300"></span>
+                            class="w-2.5 h-2.5 bg-brandLime/50 group-hover:bg-gray-900 rounded-full group-hover:scale-150 transition-all duration-500"></span>
                     </div>
                     <div class="mt-12">
                         <div class="flex items-baseline">
@@ -208,17 +175,18 @@
                             <span
                                 class="text-[3.5rem] lg:text-[4rem] font-extrabold text-gray-900 tracking-tighter">+</span>
                         </div>
-                        <p class="mt-4 text-gray-600 text-[15px] font-medium leading-relaxed max-w-[200px]">Successfully
-                            completed projects in various fields.</p>
+                        <p
+                            class="mt-4 text-gray-600 group-hover:text-gray-800 text-[15px] font-medium leading-relaxed max-w-[200px] transition-colors duration-500">
+                            Successfully completed projects in various fields.</p>
                     </div>
                 </div>
 
                 <!-- Card 2: 260+ -->
                 <div
-                    class="scroll-card opacity-0 translate-y-12 transition-all duration-[800ms] ease-out delay-[150ms] bg-white rounded-[2rem] p-10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] flex flex-col justify-between group">
+                    class="scroll-card opacity-0 translate-y-12 transition-all duration-[800ms] hover:duration-500 ease-out delay-[150ms] bg-white hover:bg-brandLime rounded-[2rem] p-10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] flex flex-col justify-between group cursor-pointer">
                     <div class="flex justify-end">
                         <span
-                            class="w-2.5 h-2.5 bg-brandLime rounded-full group-hover:scale-150 transition-transform duration-300"></span>
+                            class="w-2.5 h-2.5 bg-brandLime group-hover:bg-gray-900 rounded-full group-hover:scale-150 transition-all duration-500"></span>
                     </div>
                     <div class="mt-12">
                         <div class="flex items-baseline">
@@ -227,15 +195,15 @@
                             <span
                                 class="text-[3.5rem] lg:text-[4rem] font-extrabold text-gray-900 tracking-tighter">+</span>
                         </div>
-                        <p class="mt-4 text-gray-600 text-[15px] font-medium leading-relaxed max-w-[200px]">Building a
-                            greener future with every project.</p>
+                        <p
+                            class="mt-4 text-gray-600 group-hover:text-gray-800 text-[15px] font-medium leading-relaxed max-w-[200px] transition-colors duration-500">
+                            Building a greener future with every project.</p>
                     </div>
                 </div>
 
-                <!-- Card 3: Feature Image -->
+                <!-- Card 3: 2800+ -->
                 <div
                     class="scroll-card opacity-0 translate-y-12 transition-all duration-[800ms] ease-out delay-[300ms] bg-brandLime rounded-[2rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(203,251,0,0.3)] flex flex-col justify-between relative">
-                    <!-- Decorative shape -->
                     <div class="absolute top-0 right-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
                         <svg viewBox="0 0 200 200" class="absolute -right-10 -top-10 w-64 h-64"
                             xmlns="http://www.w3.org/2000/svg">
@@ -250,7 +218,6 @@
                             Crafting Quality,<br>Building Trust.</h3>
                     </div>
                     <div class="mt-8 px-4 pb-4 relative z-10 h-full flex items-end">
-                        <!-- House Image -->
                         <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                             alt="Modern House" class="w-full h-[200px] object-cover rounded-2xl shadow-md">
                     </div>
@@ -258,20 +225,15 @@
 
             </div>
         </div>
-
-        <!-- এর নিচের কন্টেন্টগুলো এখানে আসবে (যেমন: The Services Delivering...) -->
-        <div class="max-w-7xl mx-auto px-6 mt-20">
-            <!-- Next section content -->
-        </div>
-
     </section>
-    <!-- JavaScript for Scroll Animation & Counter -->
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // Intersection Observer Setup for Scroll Animation
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15 // Trigger when 15% of the element is visible
+                threshold: 0.15 // Triggers when 15% of the card is visible
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
@@ -279,16 +241,16 @@
                     if (entry.isIntersecting) {
                         const card = entry.target;
 
-                        // Trigger the slide-up fade-in animation
+                        // Slide up and fade in
                         card.classList.remove('opacity-0', 'translate-y-12');
                         card.classList.add('opacity-100', 'translate-y-0');
 
-                        // Trigger the number counter animation
+                        // Number counting animation
                         const counterElements = card.querySelectorAll('.counter');
                         counterElements.forEach(counter => {
                             const target = +counter.getAttribute('data-target');
-                            const duration = 2000; // 2 seconds counting animation
-                            const increment = target / (duration / 16); // Approximating 60FPS
+                            const duration = 2000; // 2 seconds
+                            const increment = target / (duration / 16);
                             let currentCount = 0;
 
                             const updateCounter = () => {
@@ -300,17 +262,16 @@
                                     counter.innerText = target;
                                 }
                             };
-
                             updateCounter();
                         });
 
-                        // Stop observing once animated
+                        // Stop observing once animation is done
                         observer.unobserve(card);
                     }
                 });
             }, observerOptions);
 
-            // Target all elements with the 'scroll-card' class
+            // Select all cards to animate
             document.querySelectorAll('.scroll-card').forEach(card => {
                 observer.observe(card);
             });
