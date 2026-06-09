@@ -419,6 +419,341 @@
         </div>
     </section>
 
+    <style>
+        /* স্লাইডারের স্ক্রলবার লুকানোর জন্য কাস্টম সিএসএস */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scroll {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        /* ভার্টিক্যাল টেক্সট এর জন্য */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+        }
+    </style>
+
+    <section class="py-24 bg-white relative z-20">
+        <div class="max-w-[90rem] mx-auto px-6">
+
+            <div class="flex flex-col xl:flex-row justify-between items-center gap-6 mb-12">
+
+                <div class="flex flex-wrap items-center gap-3" id="project-tabs">
+                    <button
+                        class="filter-btn active px-8 py-3 rounded-md font-semibold text-sm transition-all bg-[#0a8a43] text-white shadow-md border border-[#0a8a43]"
+                        data-filter="all">
+                        All
+                    </button>
+                    <button
+                        class="filter-btn px-6 py-3 rounded-md font-semibold text-sm transition-all bg-white text-gray-700 border border-gray-200 hover:border-[#0a8a43] hover:text-[#0a8a43]"
+                        data-filter="ongoing">
+                        On Going
+                    </button>
+                    <button
+                        class="filter-btn px-6 py-3 rounded-md font-semibold text-sm transition-all bg-white text-gray-700 border border-gray-200 hover:border-[#0a8a43] hover:text-[#0a8a43]"
+                        data-filter="upcoming">
+                        Upcoming
+                    </button>
+                    <button
+                        class="filter-btn px-6 py-3 rounded-md font-semibold text-sm transition-all bg-white text-gray-700 border border-gray-200 hover:border-[#0a8a43] hover:text-[#0a8a43]"
+                        data-filter="completed">
+                        Completed
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button id="prev-slide"
+                        class="w-12 h-12 bg-[#0f172a] text-white flex items-center justify-center rounded-md hover:bg-[#1e293b] transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button id="next-slide"
+                        class="w-12 h-12 bg-[#0f172a] text-white flex items-center justify-center rounded-md hover:bg-[#1e293b] transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="project-slider"
+                class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scroll pb-8 scroll-smooth">
+
+                <div class="project-card flex-shrink-0 w-full sm:w-[350px] md:w-[380px] bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden snap-start group"
+                    data-category="completed">
+                    <div class="relative h-[280px] w-full overflow-hidden bg-gray-100 flex">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Building" class="w-4/5 h-full object-cover">
+                        <div class="w-1/5 bg-black h-full flex items-center justify-center relative">
+                            <span
+                                class="text-white text-sm tracking-[0.3em] vertical-text font-bold opacity-80 uppercase">Front
+                                Face</span>
+                        </div>
+                        <div
+                            class="absolute top-4 right-4 bg-red-600 text-white text-[11px] font-bold px-3 py-1.5 rounded uppercase tracking-wider z-10 shadow-md">
+                            Sold Out!
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1.5 text-[#0a8a43] font-bold text-xs uppercase tracking-wide">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Ashulia Model Town
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">The Premium Southern Residence</h3>
+                        <p class="text-gray-500 text-xs font-semibold mt-1 uppercase">3 Bedrooms</p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-500">Ashulia Model Town</span>
+                        <svg class="w-4 h-4 text-[#0a8a43]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card flex-shrink-0 w-full sm:w-[350px] md:w-[380px] bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden snap-start group"
+                    data-category="ongoing">
+                    <div class="relative h-[280px] w-full overflow-hidden bg-gray-100 flex">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Building" class="w-4/5 h-full object-cover">
+                        <div class="w-1/5 bg-[#1a1a1a] h-full flex items-center justify-center relative">
+                            <span
+                                class="text-white text-sm tracking-[0.3em] vertical-text font-bold opacity-80 uppercase">Front
+                                Face</span>
+                        </div>
+                        <div
+                            class="absolute top-4 right-4 bg-[#0a8a43] text-white text-[11px] font-bold px-3 py-1.5 rounded uppercase tracking-wider z-10 shadow-md">
+                            Available
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1.5 text-[#0a8a43] font-bold text-xs uppercase tracking-wide">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Bashundhara R/A
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">The Premium Velinor</h3>
+                        <p class="text-gray-500 text-xs font-semibold mt-1 uppercase">3 Bedrooms</p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-500">Bashundhara Residential Area</span>
+                        <svg class="w-4 h-4 text-[#0a8a43]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card flex-shrink-0 w-full sm:w-[350px] md:w-[380px] bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden snap-start group"
+                    data-category="completed">
+                    <div class="relative h-[280px] w-full overflow-hidden bg-gray-100 flex">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Building" class="w-4/5 h-full object-cover">
+                        <div class="w-1/5 bg-[#0a8a43] h-full flex items-center justify-center relative">
+                            <span
+                                class="text-white text-sm tracking-[0.3em] vertical-text font-bold opacity-90 uppercase">Front
+                                Face</span>
+                        </div>
+                        <div
+                            class="absolute top-4 right-4 bg-red-600 text-white text-[11px] font-bold px-3 py-1.5 rounded uppercase tracking-wider z-10 shadow-md">
+                            Sold Out!
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1.5 text-[#0a8a43] font-bold text-xs uppercase tracking-wide">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Ashulia Model Town
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">The Premium Classic Residence</h3>
+                        <p class="text-gray-500 text-xs font-semibold mt-1 uppercase">3 Bedrooms</p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-500">Ashulia Model Town</span>
+                        <svg class="w-4 h-4 text-[#0a8a43]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card flex-shrink-0 w-full sm:w-[350px] md:w-[380px] bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden snap-start group"
+                    data-category="upcoming">
+                    <div class="relative h-[280px] w-full overflow-hidden bg-gray-100 flex">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Building" class="w-4/5 h-full object-cover">
+                        <div class="w-1/5 bg-black h-full flex items-center justify-center relative">
+                            <span
+                                class="text-white text-sm tracking-[0.3em] vertical-text font-bold opacity-80 uppercase">Front
+                                Face</span>
+                        </div>
+                        <div
+                            class="absolute top-4 right-4 bg-blue-600 text-white text-[11px] font-bold px-3 py-1.5 rounded uppercase tracking-wider z-10 shadow-md">
+                            Upcoming
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1.5 text-[#0a8a43] font-bold text-xs uppercase tracking-wide">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Purbachal City
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">The Premium Floral Haven</h3>
+                        <p class="text-gray-500 text-xs font-semibold mt-1 uppercase">4 Bedrooms</p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-500">Purbachal City</span>
+                        <svg class="w-4 h-4 text-[#0a8a43]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card flex-shrink-0 w-full sm:w-[350px] md:w-[380px] bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden snap-start group"
+                    data-category="ongoing">
+                    <div class="relative h-[280px] w-full overflow-hidden bg-gray-100 flex">
+                        <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Building" class="w-4/5 h-full object-cover">
+                        <div class="w-1/5 bg-[#1a1a1a] h-full flex items-center justify-center relative">
+                            <span
+                                class="text-white text-sm tracking-[0.3em] vertical-text font-bold opacity-80 uppercase">Front
+                                Face</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1.5 text-[#0a8a43] font-bold text-xs uppercase tracking-wide">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Uttara Sector 10
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">The Metro Skyline</h3>
+                        <p class="text-gray-500 text-xs font-semibold mt-1 uppercase">3 Bedrooms</p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-500">Uttara, Dhaka</span>
+                        <svg class="w-4 h-4 text-[#0a8a43]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // --- 1. Tab Filtering Logic ---
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            // Default active styling class strings
+            const activeClasses = ['bg-[#0a8a43]', 'text-white', 'border-[#0a8a43]'];
+            const inactiveClasses = ['bg-white', 'text-gray-700', 'border-gray-200'];
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button styling
+                    filterBtns.forEach(b => {
+                        b.classList.remove(...activeClasses);
+                        b.classList.add(...inactiveClasses);
+                    });
+                    btn.classList.remove(...inactiveClasses);
+                    btn.classList.add(...activeClasses);
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // Filter cards
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                            // Small animation effect
+                            card.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+
+            // --- 2. Slider Logic (Arrows & Auto Scroll) ---
+            const slider = document.getElementById('project-slider');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+
+            // Scroll distance is approximate width of one card + gap
+            const scrollAmount = 400;
+
+            prevBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                resetAutoScroll(); // Reset interval when manually clicked
+            });
+
+            nextBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                resetAutoScroll();
+            });
+
+            // Auto Scroll Setup
+            let autoScrollInterval;
+
+            function startAutoScroll() {
+                autoScrollInterval = setInterval(() => {
+                    // Check if we reached the end of the scroll
+                    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                        // Scroll back to start
+                        slider.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        // Scroll right
+                        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                }, 3500); // 3.5 seconds interval
+            }
+
+            function resetAutoScroll() {
+                clearInterval(autoScrollInterval);
+                startAutoScroll();
+            }
+
+            // Start auto scroll on load
+            startAutoScroll();
+
+            // Pause on hover
+            slider.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            slider.addEventListener('mouseleave', startAutoScroll);
+        });
+    </script>
+
+
+    <!-- ======================================================= -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Intersection Observer Setup for Scroll Animation
