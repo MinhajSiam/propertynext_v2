@@ -1327,30 +1327,35 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
-            // --- 1. Mobile Menu Toggle Logic ---
+            // --- 1. Mobile Menu Toggle Logic (Fix) ---
             const mobileBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
-            // Intersection Observer Setup for Scroll Animation
+
+            // এখানে ইভেন্ট লিসেনারটি যুক্ত করা হলো
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // --- 2. Intersection Observer Setup for Scroll Animation ---
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15 // Triggers when 15% of the card is visible
+                threshold: 0.15
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const card = entry.target;
-
-                        // Slide up and fade in
                         card.classList.remove('opacity-0', 'translate-y-12');
                         card.classList.add('opacity-100', 'translate-y-0');
 
-                        // Number counting animation
                         const counterElements = card.querySelectorAll('.counter');
                         counterElements.forEach(counter => {
                             const target = +counter.getAttribute('data-target');
-                            const duration = 2000; // 2 seconds
+                            const duration = 2000;
                             const increment = target / (duration / 16);
                             let currentCount = 0;
 
@@ -1365,17 +1370,80 @@
                             };
                             updateCounter();
                         });
-
-                        // Stop observing once animation is done
                         observer.unobserve(card);
                     }
                 });
             }, observerOptions);
 
-            // Select all cards to animate
             document.querySelectorAll('.scroll-card').forEach(card => {
                 observer.observe(card);
             });
+
+            // --- 3. Tab Filtering Logic ---
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            const activeClasses = ['bg-brandLime', 'text-gray-900', 'border-brandLime'];
+            const inactiveClasses = ['bg-white', 'text-gray-600', 'border-gray-200'];
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove(...activeClasses);
+                        b.classList.add(...inactiveClasses);
+                    });
+                    btn.classList.remove(...inactiveClasses);
+                    btn.classList.add(...activeClasses);
+
+                    const filterValue = btn.getAttribute('data-filter');
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // --- 4. Slider Logic ---
+            const slider = document.getElementById('project-slider');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            const scrollAmount = 450;
+
+            if (slider && prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    resetAutoScroll();
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    resetAutoScroll();
+                });
+
+                let autoScrollInterval;
+                function startAutoScroll() {
+                    autoScrollInterval = setInterval(() => {
+                        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                            slider.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                        }
+                    }, 3500);
+                }
+
+                function resetAutoScroll() {
+                    clearInterval(autoScrollInterval);
+                    startAutoScroll();
+                }
+
+                startAutoScroll();
+                slider.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+                slider.addEventListener('mouseleave', startAutoScroll);
+            }
+
         });
     </script>
 </body>
