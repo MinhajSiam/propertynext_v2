@@ -1213,7 +1213,7 @@
                 slider.innerHTML = '<p class="text-gray-500 font-medium px-4">Loading projects...</p>'; // লোডিং টেক্সট
 
                 try {
-                    const response = await fetch('http://localhost:5000/api/projects/all');
+                    const response = await fetch('https://propertynextv2-backend.onrender.com/api/projects/all');
                     const result = await response.json();
 
                     if (result.success && result.data.length > 0) {
