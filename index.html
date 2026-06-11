@@ -1237,7 +1237,7 @@
 
                             // আপনার অরিজিনাল ডিজাইনের হুবহু কার্ড
                             const cardHTML = `
-                                <div class="project-card flex-shrink-0 w-full sm:w-[380px] md:w-[420px] bg-white rounded-[2rem] p-4 border border-gray-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] overflow-hidden snap-start group cursor-pointer hover:shadow-2xl transition-all duration-300" data-category="${project.status}">
+                                <div onclick="window.location.href='project-details.html?id=${project._id}'" class="project-card flex-shrink-0 w-full sm:w-[380px] md:w-[420px] bg-white rounded-[2rem] p-4 border border-gray-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] overflow-hidden snap-start group cursor-pointer hover:shadow-2xl transition-all duration-300" data-category="${project.status}">
                                     <div class="relative h-[300px] w-full rounded-[1.5rem] overflow-hidden">
                                         <img src="${project.mainImage}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                         
