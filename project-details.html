@@ -796,6 +796,28 @@
                     document.getElementById('br-title').innerText = project.title;
                     document.getElementById('project-location').innerHTML = `<i class="fas fa-map-marker-alt text-brandLime"></i> ${project.location}`;
 
+                    // ১. পেজের টাইটেল পরিবর্তন
+                    document.title = `${project.title} | PropertyNext`;
+
+                    // ২. ডায়নামিক মেটা ডেসক্রিপশন পরিবর্তন
+                    let metaDesc = document.querySelector('meta[name="description"]');
+                    if (!metaDesc) {
+                        metaDesc = document.createElement('meta');
+                        metaDesc.name = "description";
+                        document.head.appendChild(metaDesc);
+                    }
+                    // প্রজেক্ট ওভারভিউয়ের প্রথম ১৫০ অক্ষর ডেসক্রিপশন হিসেবে সেট হবে
+                    metaDesc.content = project.overview ? project.overview.substring(0, 150) + "..." : "Explore premium properties with PropertyNext.";
+
+                    // ৩. শেয়ার করার ছবি ডায়নামিক করা (যাতে প্রজেক্ট শেয়ার করলে ওই প্রজেক্টের ছবিই দেখায়)
+                    let ogImage = document.querySelector('meta[property="og:image"]');
+                    if (!ogImage) {
+                        ogImage = document.createElement('meta');
+                        ogImage.setAttribute("property", "og:image");
+                        document.head.appendChild(ogImage);
+                    }
+                    ogImage.content = project.mainImage;
+
                     // স্ট্যাটাস ব্যাজের কালার থিম ঠিক করা
                     const statusBadge = document.getElementById('project-status-badge');
                     if (project.status === 'completed') {
