@@ -175,7 +175,7 @@
             <div
                 class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 shadow-sm mb-6">
                 <span class="w-1.5 h-1.5 rounded-full bg-brandLime"></span>
-                <span class="text-xs font-bold tracking-widest uppercase text-gray-300">Portal Login</span>
+                <span class="text-xs font-bold tracking-widest uppercase text-gray-300">Contact</span>
             </div>
             <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
                 Let's Start a <br><span class="text-brandLime">Conversation Today</span>
@@ -582,7 +582,8 @@
                 phone: this.querySelector('[name="phone"]').value,
                 email: this.querySelector('[name="email"]').value || '',
                 message: this.querySelector('[name="message"]').value || '',
-                interest: 'General Inquiry' // কন্টাক্ট পেজ থেকে আসলে এটি ডিফল্ট থাকবে
+                // আপডেট: এখন ইউজার বক্সে যা লিখবে তা যাবে, বক্স খালি থাকলে 'General Inquiry' যাবে
+                interest: this.querySelector('[name="interest"]').value || 'General Inquiry'
             };
 
             try {
