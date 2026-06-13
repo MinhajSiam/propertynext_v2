@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Policies | PropertyNext</title>
+    <title>Shop Booking Policy | PropertyNext</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,7 +13,8 @@
                     colors: {
                         brandLime: '#c8f31d',
                         darkGreen: '#051c14',
-                        themeGreen: '#0a8a43' // ছবির মতো গাঢ় সবুজ কালার
+                        themeGreen: '#0a8a43', // ছবির গাঢ় সবুজ
+                        lightGreen: '#e8f5e9'  // লিস্টের নাম্বারের ব্যাকগ্রাউন্ড
                     }
                 }
             }
@@ -22,228 +23,204 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="bg-[#f8f9fa] font-sans antialiased text-gray-900 selection:bg-brandLime selection:text-black">
+<body class="bg-white font-sans antialiased text-gray-800 selection:bg-brandLime selection:text-black">
 
     <!-- Navbar -->
-    <nav class="w-full px-6 py-6 bg-darkGreen flex justify-between items-center z-50 sticky top-0">
-        <div class="max-w-[80rem] mx-auto w-full flex justify-between items-center">
+    <nav class="w-full px-6 py-5 bg-darkGreen flex justify-between items-center z-50 sticky top-0">
+        <div class="max-w-[75rem] mx-auto w-full flex justify-between items-center">
             <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tight text-white">PropertyNext</a>
-            <a href="index.html"
-                class="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-6 py-2.5 text-sm font-semibold transition-all flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> Back to Home
+            <a href="policies.html"
+                class="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-5 py-2 text-sm font-semibold transition-all flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> All Policies
             </a>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-[65rem] mx-auto px-6 py-16 min-h-screen">
+    <main class="max-w-[55rem] mx-auto px-6 py-12 md:py-16">
 
-        <!-- Header Section -->
-        <div class="mb-14">
-            <h1 class="text-4xl font-bold text-darkGreen mb-6 relative inline-block">
-                All Policies
-                <!-- Green Underline -->
-                <span class="absolute -bottom-3 left-0 w-16 h-1.5 bg-themeGreen rounded-full"></span>
+        <!-- Header -->
+        <div class="mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-darkGreen mb-4 relative inline-block">
+                Rules of Shop Purchasing with Land
+                <span class="block w-full h-1 bg-themeGreen mt-2"></span>
             </h1>
-            <p class="text-gray-600 text-[17px] leading-relaxed mt-6">
-                The following is a complete index of policies issued by PropertyNext Ltd. Each link will direct you to
-                the full policy document. Please read all relevant policies carefully before proceeding with any booking
-                or registration.
+            <p class="text-gray-600 leading-relaxed mt-4">
+                The following rules and regulations govern the purchase of shops with land under PropertyNext Ltd. All
+                shareholders are required to read and comply with these terms in good faith.
             </p>
         </div>
 
-        <!-- Policy Categories -->
-        <div class="space-y-12">
+        <!-- English Rules List -->
+        <div class="space-y-6">
 
-            <!-- 1. Booking Policies -->
-            <div>
-                <div class="flex items-start gap-3 mb-6 relative">
-                    <span class="w-2.5 h-2.5 rounded-full bg-themeGreen mt-2.5"></span>
-                    <div>
-                        <h2 class="text-xl font-bold text-darkGreen">Booking Policies</h2>
-                        <p class="text-gray-500 text-sm mt-0.5">বুকিং নীতিমালা</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4">
-
-                    <!-- Flat Booking Card -->
-                    <a href="flat-booking-policy.html"
-                        class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:px-6 md:py-5 bg-white border border-gray-200 rounded-2xl hover:border-themeGreen hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div
-                                class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-xl bg-[#e8f5e9] flex items-center justify-center text-themeGreen group-hover:scale-105 transition-transform">
-                                <i class="far fa-file-alt text-xl md:text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3
-                                    class="text-lg font-bold text-gray-900 group-hover:text-themeGreen transition-colors leading-tight mb-1">
-                                    Flat Booking Policy</h3>
-                                <p class="text-gray-500 text-[13px]">ফ্ল্যাট বুকিং নীতিমালা</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-end gap-3 sm:gap-4 mt-2 sm:mt-0">
-                            <span
-                                class="px-3 py-1 rounded-full border border-orange-200 text-[#d97706] text-[11px] font-bold tracking-wider uppercase bg-orange-50">Booking</span>
-                            <div
-                                class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-themeGreen group-hover:border-themeGreen group-hover:text-white transition-all">
-                                <i class="fas fa-chevron-right text-xs md:text-sm"></i>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Shop Booking Card -->
-                    <a href="shop-booking-policy.html"
-                        class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:px-6 md:py-5 bg-white border border-gray-200 rounded-2xl hover:border-themeGreen hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div
-                                class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-xl bg-[#e8f5e9] flex items-center justify-center text-themeGreen group-hover:scale-105 transition-transform">
-                                <i class="far fa-file-alt text-xl md:text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3
-                                    class="text-lg font-bold text-gray-900 group-hover:text-themeGreen transition-colors leading-tight mb-1">
-                                    Shop Booking Policy</h3>
-                                <p class="text-gray-500 text-[13px]">দোকান বুকিং নীতিমালা</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-end gap-3 sm:gap-4 mt-2 sm:mt-0">
-                            <span
-                                class="px-3 py-1 rounded-full border border-orange-200 text-[#d97706] text-[11px] font-bold tracking-wider uppercase bg-orange-50">Booking</span>
-                            <div
-                                class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-themeGreen group-hover:border-themeGreen group-hover:text-white transition-all">
-                                <i class="fas fa-chevron-right text-xs md:text-sm"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+            <div class="flex items-start gap-4">
+                <div
+                    class="w-6 h-6 shrink-0 rounded-full bg-lightGreen text-themeGreen flex items-center justify-center text-[11px] font-bold mt-1 shadow-sm">
+                    1</div>
+                <p class="text-[15px] text-gray-700 leading-relaxed">
+                    Clients can book shops according to their choice on a <strong class="text-gray-900">first-come,
+                        first-served</strong> basis.
+                </p>
             </div>
 
-            <!-- 2. Refund Policies -->
-            <div>
-                <div class="flex items-start gap-3 mb-6 relative">
-                    <span class="w-2.5 h-2.5 rounded-full bg-themeGreen mt-2.5"></span>
-                    <div>
-                        <h2 class="text-xl font-bold text-darkGreen">Refund Policies</h2>
-                        <p class="text-gray-500 text-sm mt-0.5">রিফান্ড নীতিমালা</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4">
-                    <!-- Refund After Booking Card -->
-                    <a href="refund-policy.html"
-                        class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:px-6 md:py-5 bg-white border border-gray-200 rounded-2xl hover:border-themeGreen hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div
-                                class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-xl bg-[#e8f5e9] flex items-center justify-center text-themeGreen group-hover:scale-105 transition-transform">
-                                <i class="far fa-file-alt text-xl md:text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3
-                                    class="text-lg font-bold text-gray-900 group-hover:text-themeGreen transition-colors leading-tight mb-1">
-                                    Refund Policy - After Booking</h3>
-                                <p class="text-gray-500 text-[13px]">রিফান্ড নীতিমালা - বুকিংয়ের পরে</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-end gap-3 sm:gap-4 mt-2 sm:mt-0">
-                            <span
-                                class="px-3 py-1 rounded-full border border-orange-200 text-[#d97706] text-[11px] font-bold tracking-wider uppercase bg-orange-50">Refund</span>
-                            <div
-                                class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-themeGreen group-hover:border-themeGreen group-hover:text-white transition-all">
-                                <i class="fas fa-chevron-right text-xs md:text-sm"></i>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Refund After Registration Card -->
-                    <a href="refund-policy.html"
-                        class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:px-6 md:py-5 bg-white border border-gray-200 rounded-2xl hover:border-themeGreen hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div
-                                class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-xl bg-[#e8f5e9] flex items-center justify-center text-themeGreen group-hover:scale-105 transition-transform">
-                                <i class="far fa-file-alt text-xl md:text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3
-                                    class="text-lg font-bold text-gray-900 group-hover:text-themeGreen transition-colors leading-tight mb-1">
-                                    Refund Policy - After Registration</h3>
-                                <p class="text-gray-500 text-[13px]">রিফান্ড নীতিমালা - বুকিংয়ের পরে</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-end gap-3 sm:gap-4 mt-2 sm:mt-0">
-                            <span
-                                class="px-3 py-1 rounded-full border border-orange-200 text-[#d97706] text-[11px] font-bold tracking-wider uppercase bg-orange-50">Refund</span>
-                            <div
-                                class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-themeGreen group-hover:border-themeGreen group-hover:text-white transition-all">
-                                <i class="fas fa-chevron-right text-xs md:text-sm"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+            <div class="flex items-start gap-4">
+                <div
+                    class="w-6 h-6 shrink-0 rounded-full bg-lightGreen text-themeGreen flex items-center justify-center text-[11px] font-bold mt-1 shadow-sm">
+                    2</div>
+                <p class="text-[15px] text-gray-700 leading-relaxed">
+                    The whole construction cost will be paid by all the shareholders in step-by-step as per the <strong
+                        class="text-gray-900">Joint Construction Agreement</strong>. <a href="#"
+                        class="text-themeGreen font-bold hover:underline">Get Form</a>
+                </p>
             </div>
 
-            <!-- 3. General Policies -->
-            <div>
-                <div class="flex items-start gap-3 mb-6 relative">
-                    <span class="w-2.5 h-2.5 rounded-full bg-themeGreen mt-2.5"></span>
-                    <div>
-                        <h2 class="text-xl font-bold text-darkGreen">General Policies</h2>
-                        <p class="text-gray-500 text-sm mt-0.5">সাধারণ নীতিমালা</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4">
-                    <!-- Privacy Policy Card -->
-                    <a href="privacy-policy.html"
-                        class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:px-6 md:py-5 bg-white border border-gray-200 rounded-2xl hover:border-themeGreen hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div
-                                class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-xl bg-[#e8f5e9] flex items-center justify-center text-themeGreen group-hover:scale-105 transition-transform">
-                                <i class="fas fa-user-shield text-xl md:text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3
-                                    class="text-lg font-bold text-gray-900 group-hover:text-themeGreen transition-colors leading-tight mb-1">
-                                    Privacy Policy</h3>
-                                <p class="text-gray-500 text-[13px]">প্রাইভেসি পলিসি</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-end gap-3 sm:gap-4 mt-2 sm:mt-0">
-                            <span
-                                class="px-3 py-1 rounded-full border border-blue-200 text-blue-600 text-[11px] font-bold tracking-wider uppercase bg-blue-50">General</span>
-                            <div
-                                class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-themeGreen group-hover:border-themeGreen group-hover:text-white transition-all">
-                                <i class="fas fa-chevron-right text-xs md:text-sm"></i>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Terms of Service Card -->
-                    <a href="terms.html"
-                        class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:px-6 md:py-5 bg-white border border-gray-200 rounded-2xl hover:border-themeGreen hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div
-                                class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-xl bg-[#e8f5e9] flex items-center justify-center text-themeGreen group-hover:scale-105 transition-transform">
-                                <i class="fas fa-file-contract text-xl md:text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3
-                                    class="text-lg font-bold text-gray-900 group-hover:text-themeGreen transition-colors leading-tight mb-1">
-                                    Terms & Conditions</h3>
-                                <p class="text-gray-500 text-[13px]">টার্মস এন্ড কন্ডিশনস</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-end gap-3 sm:gap-4 mt-2 sm:mt-0">
-                            <span
-                                class="px-3 py-1 rounded-full border border-blue-200 text-blue-600 text-[11px] font-bold tracking-wider uppercase bg-blue-50">General</span>
-                            <div
-                                class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-themeGreen group-hover:border-themeGreen group-hover:text-white transition-all">
-                                <i class="fas fa-chevron-right text-xs md:text-sm"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+            <div class="flex items-start gap-4">
+                <div
+                    class="w-6 h-6 shrink-0 rounded-full bg-lightGreen text-themeGreen flex items-center justify-center text-[11px] font-bold mt-1 shadow-sm">
+                    3</div>
+                <p class="text-[15px] text-gray-700 leading-relaxed">
+                    If any client is unable to pay the full price of the land share within the stipulated time, his/her
+                    shop allotment will be canceled and the paid amount will be refunded after deducting the office
+                    charge as per the <a href="refund-policy.html"
+                        class="text-themeGreen font-bold hover:underline">refund policy</a>.
+                </p>
             </div>
 
+            <div class="flex items-start gap-4">
+                <div
+                    class="w-6 h-6 shrink-0 rounded-full bg-lightGreen text-themeGreen flex items-center justify-center text-[11px] font-bold mt-1 shadow-sm">
+                    4</div>
+                <p class="text-[15px] text-gray-700 leading-relaxed">
+                    For an uninterrupted and faster construction, shareholders shall sign <strong
+                        class="text-gray-900">Joint Construction Agreement & Power of Attorney</strong> to construct the
+                    building with PropertyNext Ltd.
+                </p>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <div
+                    class="w-6 h-6 shrink-0 rounded-full bg-lightGreen text-themeGreen flex items-center justify-center text-[11px] font-bold mt-1 shadow-sm">
+                    5</div>
+                <p class="text-[15px] text-gray-700 leading-relaxed">
+                    A specific percentage of the total construction cost will be paid as a <strong
+                        class="text-gray-900">service charge</strong> to PropertyNext Ltd. for implementation and
+                    supervision of construction work.
+                </p>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <div
+                    class="w-6 h-6 shrink-0 rounded-full bg-lightGreen text-themeGreen flex items-center justify-center text-[11px] font-bold mt-1 shadow-sm">
+                    6</div>
+                <p class="text-[15px] text-gray-700 leading-relaxed">
+                    All other policies related to PropertyNext Ltd. are available on our official website: <a
+                        href="index.html" class="text-themeGreen font-bold hover:underline">https://propertynext.bd/</a>
+                </p>
+            </div>
         </div>
+
+        <!-- English Declaration Box -->
+        <div class="bg-[#fffdf0] border border-[#fde68a] rounded-xl p-6 md:p-8 mt-10 shadow-sm">
+            <h4 class="text-[11px] font-bold text-[#b45309] uppercase tracking-widest mb-3">Declaration / ঘোষণা</h4>
+            <p class="text-[#92400e] text-[14px] leading-relaxed font-medium">
+                I hereby declare that the information provided above by me is true to the best of my knowledge and
+                belief. I also declare that I have read the terms and conditions mentioned above attentively and agreed
+                to comply with all of them in good faith. I agree to the terms of service.
+            </p>
+        </div>
+
+        <!-- Bengali Translation Section -->
+        <div class="bg-[#f4fbf6] border border-[#d1ebd9] rounded-[1.5rem] p-6 md:p-10 mt-12 shadow-sm">
+            <h3 class="text-themeGreen text-sm font-bold mb-1">বাংলা অনুবাদ</h3>
+            <h2 class="text-xl md:text-2xl font-bold text-darkGreen mb-6 pb-4 border-b border-[#d1ebd9]">
+                ভূমিগত দোকান ক্রয়ের নিয়মাবলী
+            </h2>
+
+            <div class="space-y-5">
+                <div class="flex items-start gap-3">
+                    <span class="text-themeGreen font-bold mt-0.5">০১।</span>
+                    <p class="text-[15px] text-gray-700 leading-relaxed">
+                        ক্লায়েন্টরা তাদের পছন্দ অনুযায়ী 'ফার্স্ট কাম, ফার্স্ট সার্ভ' ভিত্তিতে দোকান বুক করতে পারবেন।
+                    </p>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <span class="text-themeGreen font-bold mt-0.5">০২।</span>
+                    <p class="text-[15px] text-gray-700 leading-relaxed">
+                        যৌথ নির্মাণ চুক্তিনামা অনুযায়ী সকল শেয়ারহোল্ডাররা ধাপে ধাপে সম্পূর্ণ নির্মাণ ব্যয় পরিশোধ করবেন।
+                    </p>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <span class="text-themeGreen font-bold mt-0.5">০৩।</span>
+                    <p class="text-[15px] text-gray-700 leading-relaxed">
+                        নির্ধারিত সময়ের মধ্যে জমির শেয়ারের সম্পূর্ণ মূল্য পরিশোধে ব্যর্থ হলে, সংশ্লিষ্ট শেয়ারহোল্ডারের
+                        দোকান বুকিং বাতিল হবে এবং <a href="#" class="text-themeGreen font-bold hover:underline">রিফান্ড
+                            পলিসি</a> অনুসারে অফিস চার্জ কর্তনপূর্বক বাকি অর্থ ফেরত দেওয়া হবে।
+                    </p>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <span class="text-themeGreen font-bold mt-0.5">০৪।</span>
+                    <p class="text-[15px] text-gray-700 leading-relaxed">
+                        নির্মাণকাজ দ্রুত ও নিরবচ্ছিন্ন করতে শেয়ারহোল্ডারগণ PropertyNext Ltd.-এর সাথে যৌথ নির্মাণ চুক্তি
+                        ও পাওয়ার অব অ্যাটর্নি স্বাক্ষর করবেন।
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bengali Declaration inside Green Box -->
+            <div class="mt-8 pt-6 border-t border-[#d1ebd9]">
+                <h4 class="text-[13px] font-bold text-darkGreen mb-2">ঘোষণাঃ</h4>
+                <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
+                    আমি এই মর্মে ঘোষণা করছি যে, উপরোক্ত প্রদানকৃত তথ্যসমূহ আমার জ্ঞান ও বিশ্বাস অনুযায়ী সঠিক। আমি
+                    উপরোক্ত শর্তাবলী মনোযোগ সহকারে পড়েছি এবং স্বেচ্ছায় সজ্ঞানে মেনে চলতে সম্মত হয়েছি। আমি টার্মস অব
+                    সার্ভিসের সাথে একমত।
+                </p>
+            </div>
+        </div>
+
+        <!-- Concluding Note -->
+        <div class="mt-10 border-l-4 border-themeGreen pl-4 py-1">
+            <p class="text-[13px] text-gray-500 italic">
+                All policies and provisions outlined herein may be reviewed and revised periodically to ensure alignment
+                with the broader interests of stakeholders.
+            </p>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div class="mt-16 pt-10 border-t border-gray-100">
+            <h2 class="text-2xl font-bold text-darkGreen mb-6">Contact Us</h2>
+            <p class="text-[15px] text-gray-600 mb-6">If you have any questions about this Shop Booking Policy, you can
+                contact us:</p>
+
+            <ul class="space-y-4 text-[15px] text-gray-700">
+                <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-themeGreen"></span>
+                    <strong>Company Name:</strong> PropertyNext Ltd.
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-themeGreen"></span>
+                    <strong>App Name:</strong> PropertyNext Portal
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-themeGreen"></span>
+                    <strong>Contact email:</strong> <a href="mailto:info@propertynext.bd"
+                        class="text-themeGreen hover:underline">info@propertynext.bd</a>
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-themeGreen"></span>
+                    <strong>Country:</strong> Bangladesh
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-themeGreen"></span>
+                    <strong>By visiting our website:</strong> <a href="index.html"
+                        class="text-themeGreen hover:underline">https://www.propertynext.bd/contact</a>
+                </li>
+            </ul>
+        </div>
+
     </main>
 
     <!-- Footer -->
