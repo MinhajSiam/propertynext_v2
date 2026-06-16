@@ -923,10 +923,19 @@
                     const btnSidebar = document.getElementById('btn-brochure-sidebar');
 
                     if (project.brochureUrl) {
-                        if (btnMain) btnMain.href = project.brochureUrl;
-                        if (btnSidebar) btnSidebar.href = project.brochureUrl;
+                        // Cloudinary PDF ফিক্স: ব্রাউজারে ওপেন না করে সরাসরি ডাউনলোড করার কমান্ড (fl_attachment)
+                        const downloadUrl = project.brochureUrl.replace('/upload/', '/upload/fl_attachment/');
+
+                        if (btnMain) {
+                            btnMain.href = downloadUrl;
+                            btnMain.setAttribute('target', '_blank'); // নতুন ট্যাবে ডাউনলোড শুরু করবে
+                        }
+                        if (btnSidebar) {
+                            btnSidebar.href = downloadUrl;
+                            btnSidebar.setAttribute('target', '_blank');
+                        }
                     } else {
-                        // ব্রোশিওর না থাকলে বাটন লুকিয়ে রাখা বা ডিসেবল করা
+                        // ব্রোশিওর না থাকলে বাটন লুকিয়ে রাখা
                         if (btnMain) btnMain.style.display = 'none';
                         if (btnSidebar) btnSidebar.style.display = 'none';
                     }
