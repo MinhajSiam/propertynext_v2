@@ -304,8 +304,33 @@
                     <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                         <span class="w-2 h-8 rounded-full bg-brandLime"></span> Master Floor Plans
                     </h2>
-                    <div id="floor-plans-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
+                    <div class="flex overflow-x-auto border-b border-gray-200 mb-8 hide-scroll">
+                        <button
+                            class="plan-btn active px-6 py-4 font-bold text-gray-500 hover:text-gray-900 border-b-2 border-transparent transition-colors whitespace-nowrap"
+                            onclick="showPlan('typeA', this)">Type A (1175 Sft)</button>
+                        <button
+                            class="plan-btn px-6 py-4 font-bold text-gray-500 hover:text-gray-900 border-b-2 border-transparent transition-colors whitespace-nowrap"
+                            onclick="showPlan('typeB', this)">Type B (1135 Sft)</button>
+                        <button
+                            class="plan-btn px-6 py-4 font-bold text-gray-500 hover:text-gray-900 border-b-2 border-transparent transition-colors whitespace-nowrap"
+                            onclick="showPlan('ground', this)">Ground Floor & Parking</button>
+                    </div>
+
+                    <div class="plan-content active" id="typeA">
+                        <img id="img-typeA"
+                            src="https://cdn.dribbble.com/userupload/37596528/file/original-fb94cd24f9d93780c0c6dbedfbd1d1f0.jpg?resize=752x&vertical=center"
+                            class="w-full rounded-[1.5rem] shadow-sm border border-gray-100" alt="Type A Plan">
+                    </div>
+                    <div class="plan-content hidden" id="typeB">
+                        <img id="img-typeB"
+                            src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/0c6976132499951.61aa0f222520f.jpg"
+                            class="w-full rounded-[1.5rem] shadow-sm border border-gray-100" alt="Type B Plan">
+                    </div>
+                    <div class="plan-content hidden" id="ground">
+                        <img id="img-ground"
+                            src="https://images.squarespace-cdn.com/content/v1/544097e1e4b02c9e7d3761d0/1450693685035-YLZGHG5WT8IJ3DHIR8UU/3d-floor-plan-apartment.jpg"
+                            class="w-full rounded-[1.5rem] shadow-sm border border-gray-100" alt="Ground Floor Plan">
                     </div>
                 </div>
 
@@ -640,25 +665,26 @@
         // ==========================================
         let projectImages = []; // ডেটাবেস থেকে আসা ছবিগুলো এখানে জমা হবে
         let currentImageIndex = 0;
-        let currentGalleryType = 'project'; // 'project' or 'floorplan'
-        let currentActiveArray = []; // যে ছবিগুলো মডালে দেখাবে
 
+        // ফ্লোর প্ল্যান ট্যাব পরিবর্তন করার ফাংশন
+        function showPlan(planId, element) {
+            document.querySelectorAll('.plan-content').forEach(plan => {
+                plan.classList.add('hidden');
+                plan.classList.remove('active');
+            });
+            document.querySelectorAll('.plan-btn').forEach(btn => {
+                btn.classList.remove('border-brandLime', 'text-gray-900');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+            document.getElementById(planId).classList.remove('hidden');
+            document.getElementById(planId).classList.add('active');
+            element.classList.remove('border-transparent', 'text-gray-500');
+            element.classList.add('border-brandLime', 'text-gray-900');
+        }
 
-        function openGallery(index = 0, type = 'project') {
-            currentGalleryType = type;
-            // টাইপ অনুযায়ী ঠিক করবে কোন অ্যারের ছবিগুলো দেখাবে
-            if (type === 'project') {
-                currentActiveArray = projectImages;
-            } else {
-                // ফ্লোর প্ল্যানের অ্যারে তৈরি
-                currentActiveArray = window.currentProjectData.floorPlans || [];
-                if (window.currentProjectData.floorPlanA) currentActiveArray.push(window.currentProjectData.floorPlanA);
-                if (window.currentProjectData.floorPlanB) currentActiveArray.push(window.currentProjectData.floorPlanB);
-                if (window.currentProjectData.groundFloorPlan) currentActiveArray.push(window.currentProjectData.groundFloorPlan);
-            }
-
-            if (currentActiveArray.length === 0) return;
-
+        // লাইটবক্স গ্যালারি ওপেন করা
+        function openGallery(index = 0) {
+            if (projectImages.length === 0) return;
             currentImageIndex = index;
             const modal = document.getElementById('galleryModal');
             modal.classList.remove('hidden');
@@ -683,253 +709,242 @@
             updateGalleryUI();
         }
 
+        // গ্যালারি ইন্টারফেস আপডেট করা
         function updateGalleryUI() {
             const mainImg = document.getElementById('galleryMainImage');
             mainImg.style.opacity = 0;
             setTimeout(() => {
-                mainImg.src = currentActiveArray[currentImageIndex];
+                mainImg.src = projectImages[currentImageIndex];
                 mainImg.style.opacity = 1;
             }, 150);
 
             const thumbContainer = document.getElementById('galleryThumbnails');
             thumbContainer.innerHTML = '';
-            currentActiveArray.forEach((imgSrc, idx) => {
+            projectImages.forEach((imgSrc, idx) => {
                 const isActive = idx === currentImageIndex
                     ? 'border-brandLime scale-[1.2] opacity-100 shadow-[0_0_15px_rgba(200,243,29,0.8)] relative z-10 mx-2 my-4'
                     : 'border-transparent opacity-50 hover:opacity-100 scale-100 mx-2 my-4';
-
-                // object-contain ব্যবহার করা হয়েছে যাতে ফ্লোর প্ল্যানগুলো সুন্দরভাবে থাম্বনেইলে দেখা যায়
-                thumbContainer.innerHTML += `<img src="${imgSrc}" onclick="openGallery(${idx}, '${currentGalleryType}')" class="h-16 w-24 ${currentGalleryType === 'floorplan' ? 'object-contain bg-white' : 'object-cover'} rounded-md cursor-pointer border-2 transition-all duration-300 shrink-0 ${isActive}">`;
+                thumbContainer.innerHTML += `<img src="${imgSrc}" onclick="openGallery(${idx})" class="h-16 w-24 object-cover rounded-md cursor-pointer border-2 transition-all duration-300 shrink-0 ${isActive}">`;
             });
+        }
 
+        // কীবোর্ড বাটন লিসেনার (Esc, Arrows)
+        document.addEventListener('keydown', function (event) {
+            const modal = document.getElementById('galleryModal');
+            if (!modal.classList.contains('hidden')) {
+                if (event.key === "Escape") closeGallery();
+                if (event.key === "ArrowRight") changeImage(1);
+                if (event.key === "ArrowLeft") changeImage(-1);
+            }
+        });
 
-            // কীবোর্ড বাটন লিসেনার (Esc, Arrows)
-            document.addEventListener('keydown', function (event) {
-                const modal = document.getElementById('galleryModal');
-                if (!modal.classList.contains('hidden')) {
-                    if (event.key === "Escape") closeGallery();
-                    if (event.key === "ArrowRight") changeImage(1);
-                    if (event.key === "ArrowLeft") changeImage(-1);
+        // ==========================================
+        // ২. কন্টাক্ট ফর্ম (Express Interest) সাবমিশন (NEW API)
+        // ==========================================
+        document.getElementById('inquiry-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.innerHTML;
+
+            // বাটন লোডিং স্টেট
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Submitting...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.7";
+
+            // ডাইনামিক প্রজেক্টের নাম নেওয়া 
+            const projectTitle = document.getElementById('project-title').innerText || 'Specific Property';
+
+            // নতুন API মডেল অনুযায়ী ডেটা সাজানো
+            const leadData = {
+                name: document.getElementById('leadName').value,
+                phone: document.getElementById('leadPhone').value,
+                email: document.getElementById('leadEmail').value || '',
+                message: document.getElementById('leadPurpose').value || '',
+                interest: `Property Inquiry: ${projectTitle}`
+            };
+
+            try {
+                // নতুন v2 ব্যাকএন্ডের লিংকে ডেটা পাঠানো
+                const response = await fetch('https://propertynextv2-backend.onrender.com/api/leads/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('🎉 ' + result.message);
+                    document.getElementById('inquiry-form').reset(); // ফর্ম খালি করা
+                } else {
+                    alert('❌ Error: ' + result.message);
                 }
-            });
+            } catch (error) {
+                console.error("Error submitting lead:", error);
+                alert('❌ সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না। দয়া করে কিছুক্ষণ পর আবার চেষ্টা করুন।');
+            } finally {
+                // বাটন আগের অবস্থায় ফিরিয়ে আনা
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = "1";
+            }
+        });
 
-            // ==========================================
-            // ২. কন্টাক্ট ফর্ম (Express Interest) সাবমিশন (NEW API)
-            // ==========================================
-            document.getElementById('inquiry-form').addEventListener('submit', async function (event) {
-                event.preventDefault();
+        // ==========================================
+        // ৩. ডেটাবেস থেকে সব ডেটা লোড করার মূল ইঞ্জিন
+        // ==========================================
+        document.addEventListener("DOMContentLoaded", async () => {
+            // প্রথম ট্যাবটি একটিভ করার স্টাইল
+            document.querySelector('.plan-btn.active').classList.add('border-brandLime', 'text-gray-900');
 
-                const submitBtn = document.getElementById('submitBtn');
-                const originalBtnText = submitBtn.innerHTML;
+            // URL থেকে আইডি খোঁজা (?id=xxxxx)
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+            if (!projectId) return;
 
-                // বাটন লোডিং স্টেট
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Submitting...';
-                submitBtn.disabled = true;
-                submitBtn.style.opacity = "0.7";
+            try {
+                // লাইভ এপিআই থেকে ডেটা ফেচ করা
+                const response = await fetch(`https://propertynextv2-backend.onrender.com/api/projects/${projectId}`);
+                const result = await response.json();
 
-                // ডাইনামিক প্রজেক্টের নাম নেওয়া 
-                const projectTitle = document.getElementById('project-title').innerText || 'Specific Property';
+                if (result.success) {
+                    const project = result.data;
 
-                // নতুন API মডেল অনুযায়ী ডেটা সাজানো
-                const leadData = {
-                    name: document.getElementById('leadName').value,
-                    phone: document.getElementById('leadPhone').value,
-                    email: document.getElementById('leadEmail').value || '',
-                    message: document.getElementById('leadPurpose').value || '',
-                    interest: `Property Inquiry: ${projectTitle}`
-                };
+                    // ক) বেসিক ইনফরমেশন ডাইনামিক করা
+                    document.title = `${project.title} | PropertyNext`;
+                    document.getElementById('project-title').innerText = project.title;
+                    document.getElementById('br-title').innerText = project.title;
+                    document.getElementById('project-location').innerHTML = `<i class="fas fa-map-marker-alt text-brandLime"></i> ${project.location}`;
 
-                try {
-                    // নতুন v2 ব্যাকএন্ডের লিংকে ডেটা পাঠানো
-                    const response = await fetch('https://propertynextv2-backend.onrender.com/api/leads/add', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(leadData)
-                    });
+                    // ১. পেজের টাইটেল পরিবর্তন
+                    document.title = `${project.title} | PropertyNext`;
 
-                    const result = await response.json();
-
-                    if (result.success) {
-                        alert(result.message);
-                        document.getElementById('inquiry-form').reset(); // ফর্ম খালি করা
-                    } else {
-                        alert('❌ Error: ' + result.message);
+                    // ২. ডায়নামিক মেটা ডেসক্রিপশন পরিবর্তন
+                    let metaDesc = document.querySelector('meta[name="description"]');
+                    if (!metaDesc) {
+                        metaDesc = document.createElement('meta');
+                        metaDesc.name = "description";
+                        document.head.appendChild(metaDesc);
                     }
-                } catch (error) {
-                    console.error("Error submitting lead:", error);
-                    alert('❌ সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না। দয়া করে কিছুক্ষণ পর আবার চেষ্টা করুন।');
-                } finally {
-                    // বাটন আগের অবস্থায় ফিরিয়ে আনা
-                    submitBtn.innerHTML = originalBtnText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.opacity = "1";
-                }
-            });
+                    // প্রজেক্ট ওভারভিউয়ের প্রথম ১৫০ অক্ষর ডেসক্রিপশন হিসেবে সেট হবে
+                    metaDesc.content = project.overview ? project.overview.substring(0, 150) + "..." : "Explore premium properties with PropertyNext.";
 
-            // ==========================================
-            // ৩. ডেটাবেস থেকে সব ডেটা লোড করার মূল ইঞ্জিন
-            // ==========================================
-            document.addEventListener("DOMContentLoaded", async () => {
-                // প্রথম ট্যাবটি একটিভ করার স্টাইল
-                document.querySelector('.plan-btn.active').classList.add('border-brandLime', 'text-gray-900');
+                    // ৩. শেয়ার করার ছবি ডায়নামিক করা (যাতে প্রজেক্ট শেয়ার করলে ওই প্রজেক্টের ছবিই দেখায়)
+                    let ogImage = document.querySelector('meta[property="og:image"]');
+                    if (!ogImage) {
+                        ogImage = document.createElement('meta');
+                        ogImage.setAttribute("property", "og:image");
+                        document.head.appendChild(ogImage);
+                    }
+                    ogImage.content = project.mainImage;
 
-                // URL থেকে আইডি খোঁজা (?id=xxxxx)
-                const urlParams = new URLSearchParams(window.location.search);
-                const projectId = urlParams.get('id');
-                if (!projectId) return;
+                    // স্ট্যাটাস ব্যাজের কালার থিম ঠিক করা
+                    const statusBadge = document.getElementById('project-status-badge');
+                    if (project.status === 'completed') {
+                        statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-white"></span> Sold Out`;
+                        statusBadge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 text-white text-xs font-bold uppercase tracking-wider mb-3 shadow-lg";
+                    } else if (project.status === 'ongoing') {
+                        statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse"></span> Available for Booking`;
+                        statusBadge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider mb-3";
+                    } else {
+                        statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-orange-600 animate-pulse"></span> Upcoming`;
+                        statusBadge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-bold uppercase tracking-wider mb-3";
+                    }
 
-                try {
-                    // লাইভ এপিআই থেকে ডেটা ফেচ করা
-                    const response = await fetch(`https://propertynextv2-backend.onrender.com/api/projects/${projectId}`);
-                    const result = await response.json();
+                    // খ) At a Glance তথ্যগুলো বসানো
+                    document.getElementById('val-landArea').innerText = project.landArea || 'TBA';
+                    document.getElementById('val-facing').innerText = project.facing || 'TBA';
+                    document.getElementById('val-height').innerText = project.height || 'TBA';
+                    document.getElementById('val-totalUnits').innerText = project.totalUnits || 'TBA';
+                    document.getElementById('val-sizeOfUnits').innerText = project.sizeOfUnits || 'TBA';
+                    document.getElementById('val-handover').innerText = project.handover || 'TBA';
 
-                    if (result.success) {
-                        const project = result.data;
+                    // গ) প্রজেক্ট ওভারভিউ ডেসক্রিপশন
+                    if (project.overview) {
+                        document.getElementById('project-overview-content').innerHTML = `<p>${project.overview}</p>`;
+                    }
 
-                        window.currentProjectData = project;
+                    // ঘ) ৪টি ছবির গ্র্যালারি অ্যারে সাজানো
+                    projectImages = [project.mainImage];
+                    if (project.galleryImages && project.galleryImages.length > 0) {
+                        projectImages = [...projectImages, ...project.galleryImages];
+                    }
 
-                        // ক) বেসিক ইনফরমেশন ডাইনামিক করা
-                        document.title = `${project.title} | PropertyNext`;
-                        document.getElementById('project-title').innerText = project.title;
-                        document.getElementById('br-title').innerText = project.title;
-                        document.getElementById('project-location').innerHTML = `<i class="fas fa-map-marker-alt text-brandLime"></i> ${project.location}`;
+                    document.getElementById('main-project-image').src = projectImages[0];
+                    if (projectImages[1]) document.getElementById('gallery-grid-1').src = projectImages[1];
+                    if (projectImages[2]) document.getElementById('gallery-grid-2').src = projectImages[2];
+                    if (projectImages[3]) document.getElementById('gallery-grid-3').src = projectImages[3];
 
-                        // ১. পেজের টাইটেল পরিবর্তন
-                        document.title = `${project.title} | PropertyNext`;
+                    // ঙ) ভিডিও এবং গুগল ম্যাপ লিঙ্ক পুশ করা
+                    if (project.videoUrl) {
+                        document.getElementById('virtual-tour-iframe').src = project.videoUrl;
+                    }
+                    if (project.mapUrl) {
+                        document.getElementById('map-iframe').src = project.mapUrl;
+                    }
 
-                        // ২. ডায়নামিক মেটা ডেসক্রিপশন পরিবর্তন
-                        let metaDesc = document.querySelector('meta[name="description"]');
-                        if (!metaDesc) {
-                            metaDesc = document.createElement('meta');
-                            metaDesc.name = "description";
-                            document.head.appendChild(metaDesc);
-                        }
-                        // প্রজেক্ট ওভারভিউয়ের প্রথম ১৫০ অক্ষর ডেসক্রিপশন হিসেবে সেট হবে
-                        metaDesc.content = project.overview ? project.overview.substring(0, 150) + "..." : "Explore premium properties with PropertyNext.";
+                    // চ) ৩টি ট্যাবের ফ্লোর প্ল্যান ছবি পরিবর্তন
+                    if (project.floorPlanA) document.getElementById('img-typeA').src = project.floorPlanA;
+                    if (project.floorPlanB) document.getElementById('img-typeB').src = project.floorPlanB;
+                    if (project.groundFloorPlan) document.getElementById('img-ground').src = project.groundFloorPlan;
 
-                        // ৩. শেয়ার করার ছবি ডায়নামিক করা (যাতে প্রজেক্ট শেয়ার করলে ওই প্রজেক্টের ছবিই দেখায়)
-                        let ogImage = document.querySelector('meta[property="og:image"]');
-                        if (!ogImage) {
-                            ogImage = document.createElement('meta');
-                            ogImage.setAttribute("property", "og:image");
-                            document.head.appendChild(ogImage);
-                        }
-                        ogImage.content = project.mainImage;
+                    // ছ) টেকনিক্যাল স্পেসিফিকেশন (কমা দিয়ে আলাদা করে <li> লিস্ট তৈরি করার লজিক)
+                    const createList = (dataStr) => {
+                        if (!dataStr) return '<li class="text-gray-400">Information not uploaded yet</li>';
+                        return dataStr.split(',').map(item => `<li class="flex gap-3"><i class="fas fa-check text-green-500 mt-1"></i> ${item.trim()}</li>`).join('');
+                    };
+                    document.getElementById('spec-structural').innerHTML = createList(project.structuralFeatures);
+                    document.getElementById('spec-flooring').innerHTML = createList(project.flooring);
+                    document.getElementById('spec-kitchen').innerHTML = createList(project.kitchenBath);
+                    document.getElementById('spec-electrical').innerHTML = createList(project.electrical);
 
-                        // স্ট্যাটাস ব্যাজের কালার থিম ঠিক করা
-                        const statusBadge = document.getElementById('project-status-badge');
-                        if (project.status === 'completed') {
-                            statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-white"></span> Sold Out`;
-                            statusBadge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 text-white text-xs font-bold uppercase tracking-wider mb-3 shadow-lg";
-                        } else if (project.status === 'ongoing') {
-                            statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse"></span> Available for Booking`;
-                            statusBadge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider mb-3";
-                        } else {
-                            statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-orange-600 animate-pulse"></span> Upcoming`;
-                            statusBadge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-bold uppercase tracking-wider mb-3";
-                        }
+                    // জ) লোকেশন অ্যাডভান্টেজ (ডাইনামিকালি নতুন নতুন রো তৈরি করার লজিক)
+                    const advContainer = document.getElementById('location-advantages-container');
+                    const advArray = Array.isArray(project.locationAdvantages) ? project.locationAdvantages : [];
 
-                        // খ) At a Glance তথ্যগুলো বসানো
-                        document.getElementById('val-landArea').innerText = project.landArea || 'TBA';
-                        document.getElementById('val-facing').innerText = project.facing || 'TBA';
-                        document.getElementById('val-height').innerText = project.height || 'TBA';
-                        document.getElementById('val-totalUnits').innerText = project.totalUnits || 'TBA';
-                        document.getElementById('val-sizeOfUnits').innerText = project.sizeOfUnits || 'TBA';
-                        document.getElementById('val-handover').innerText = project.handover || 'TBA';
-
-                        // গ) প্রজেক্ট ওভারভিউ ডেসক্রিপশন
-                        if (project.overview) {
-                            document.getElementById('project-overview-content').innerHTML = `<p>${project.overview}</p>`;
-                        }
-
-                        // ঘ) ৪টি ছবির গ্র্যালারি অ্যারে সাজানো
-                        projectImages = [project.mainImage];
-                        if (project.galleryImages && project.galleryImages.length > 0) {
-                            projectImages = [...projectImages, ...project.galleryImages];
-                        }
-
-                        document.getElementById('main-project-image').src = projectImages[0];
-                        if (projectImages[1]) document.getElementById('gallery-grid-1').src = projectImages[1];
-                        if (projectImages[2]) document.getElementById('gallery-grid-2').src = projectImages[2];
-                        if (projectImages[3]) document.getElementById('gallery-grid-3').src = projectImages[3];
-
-                        // ঙ) ভিডিও এবং গুগল ম্যাপ লিঙ্ক পুশ করা
-                        if (project.videoUrl) {
-                            document.getElementById('virtual-tour-iframe').src = project.videoUrl;
-                        }
-                        if (project.mapUrl) {
-                            document.getElementById('map-iframe').src = project.mapUrl;
-                        }
-
-                        // চ) ফ্লোর প্ল্যান গ্যালারি তৈরি করা
-                        const floorPlanContainer = document.getElementById('floor-plans-container');
-                        let floorPlanImages = project.floorPlans || [];
-
-                        // যদি পুরনো স্টাইলের ফ্লোর প্ল্যান থাকে, সেগুলোকেও অ্যারেতে যুক্ত করে নেবে
-                        if (project.floorPlanA) floorPlanImages.push(project.floorPlanA);
-                        if (project.floorPlanB) floorPlanImages.push(project.floorPlanB);
-                        if (project.groundFloorPlan) floorPlanImages.push(project.groundFloorPlan);
-
-                        if (floorPlanImages.length > 0) {
-                            floorPlanContainer.innerHTML = floorPlanImages.map((img, idx) => `
-                            <div class="relative group cursor-pointer overflow-hidden rounded-[1.5rem] shadow-sm border border-gray-100 aspect-[4/3] bg-white p-2" onclick="openGallery(${idx}, 'floorplan')">
-                                <img src="${img}" alt="Floor Plan" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
-                                <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-[1.5rem]">
-                                    <i class="fas fa-search-plus text-white text-3xl"></i>
-                                </div>
-                            </div>
-                        `).join('');
-                        } else {
-                            floorPlanContainer.innerHTML = '<p class="text-gray-500 col-span-3">No floor plans available.</p>';
-                        }
-
-
-                        // জ) লোকেশন অ্যাডভান্টেজ (ডাইনামিকালি নতুন নতুন রো তৈরি করার লজিক)
-                        const advContainer = document.getElementById('location-advantages-container');
-                        const advArray = Array.isArray(project.locationAdvantages) ? project.locationAdvantages : [];
-
-                        if (advArray.length > 0) {
-                            advContainer.innerHTML = advArray.map(item => {
-                                const parts = item.split('-');
-                                const name = parts[0] ? parts[0].trim() : item;
-                                const time = parts[1] ? parts[1].trim() : '';
-                                return `
+                    if (advArray.length > 0) {
+                        advContainer.innerHTML = advArray.map(item => {
+                            const parts = item.split('-');
+                            const name = parts[0] ? parts[0].trim() : item;
+                            const time = parts[1] ? parts[1].trim() : '';
+                            return `
                             <div class="flex items-center justify-between p-5 border-b border-gray-100 hover:bg-gray-50 transition-colors">
                                 <div class="font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-map-marker-alt text-brandLime text-lg w-6"></i> ${name}</div>
                                 ${time ? `<span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">${time}</span>` : ''}
                             </div>`;
-                            }).join('');
-                        } else {
-                            advContainer.innerHTML = '<p class="p-5 text-gray-500">Location advantages will be updated soon.</p>';
-                        }
-
-                        // ঝ) ব্রোশিওর (PDF) ডাউনলোড লিংক আপডেট
-                        const btnMain = document.getElementById('btn-brochure-main');
-                        const btnSidebar = document.getElementById('btn-brochure-sidebar');
-
-                        if (project.brochureUrl) {
-                            // Cloudinary PDF ফিক্স: ব্রাউজারে ওপেন না করে সরাসরি ডাউনলোড করার কমান্ড (fl_attachment)
-                            const downloadUrl = project.brochureUrl.replace('/upload/', '/upload/fl_attachment/');
-
-                            if (btnMain) {
-                                btnMain.href = downloadUrl;
-                                btnMain.setAttribute('target', '_blank'); // নতুন ট্যাবে ডাউনলোড শুরু করবে
-                            }
-                            if (btnSidebar) {
-                                btnSidebar.href = downloadUrl;
-                                btnSidebar.setAttribute('target', '_blank');
-                            }
-                        } else {
-                            // ব্রোশিওর না থাকলে বাটন লুকিয়ে রাখা
-                            if (btnMain) btnMain.style.display = 'none';
-                            if (btnSidebar) btnSidebar.style.display = 'none';
-                        }
-
+                        }).join('');
+                    } else {
+                        advContainer.innerHTML = '<p class="p-5 text-gray-500">Location advantages will be updated soon.</p>';
                     }
-                } catch (error) {
-                    console.error("Error fetching project:", error);
+
+                    // ঝ) ব্রোশিওর (PDF) ডাউনলোড লিংক আপডেট
+                    const btnMain = document.getElementById('btn-brochure-main');
+                    const btnSidebar = document.getElementById('btn-brochure-sidebar');
+
+                    if (project.brochureUrl) {
+                        // Cloudinary PDF ফিক্স: ব্রাউজারে ওপেন না করে সরাসরি ডাউনলোড করার কমান্ড (fl_attachment)
+                        const downloadUrl = project.brochureUrl.replace('/upload/', '/upload/fl_attachment/');
+
+                        if (btnMain) {
+                            btnMain.href = downloadUrl;
+                            btnMain.setAttribute('target', '_blank'); // নতুন ট্যাবে ডাউনলোড শুরু করবে
+                        }
+                        if (btnSidebar) {
+                            btnSidebar.href = downloadUrl;
+                            btnSidebar.setAttribute('target', '_blank');
+                        }
+                    } else {
+                        // ব্রোশিওর না থাকলে বাটন লুকিয়ে রাখা
+                        if (btnMain) btnMain.style.display = 'none';
+                        if (btnSidebar) btnSidebar.style.display = 'none';
+                    }
+
                 }
-            });
+            } catch (error) {
+                console.error("Error fetching project:", error);
+            }
+        });
     </script>
 </body>
 
