@@ -300,39 +300,6 @@
                     </div>
                 </div>
 
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                        <span class="w-2 h-8 rounded-full bg-brandLime"></span> Master Floor Plans
-                    </h2>
-
-                    <div class="flex overflow-x-auto border-b border-gray-200 mb-8 hide-scroll">
-                        <button
-                            class="plan-btn active px-6 py-4 font-bold text-gray-500 hover:text-gray-900 border-b-2 border-transparent transition-colors whitespace-nowrap"
-                            onclick="showPlan('typeA', this)">Type A (1175 Sft)</button>
-                        <button
-                            class="plan-btn px-6 py-4 font-bold text-gray-500 hover:text-gray-900 border-b-2 border-transparent transition-colors whitespace-nowrap"
-                            onclick="showPlan('typeB', this)">Type B (1135 Sft)</button>
-                        <button
-                            class="plan-btn px-6 py-4 font-bold text-gray-500 hover:text-gray-900 border-b-2 border-transparent transition-colors whitespace-nowrap"
-                            onclick="showPlan('ground', this)">Ground Floor & Parking</button>
-                    </div>
-
-                    <div class="plan-content active" id="typeA">
-                        <img id="img-typeA"
-                            src="https://cdn.dribbble.com/userupload/37596528/file/original-fb94cd24f9d93780c0c6dbedfbd1d1f0.jpg?resize=752x&vertical=center"
-                            class="w-full rounded-[1.5rem] shadow-sm border border-gray-100" alt="Type A Plan">
-                    </div>
-                    <div class="plan-content hidden" id="typeB">
-                        <img id="img-typeB"
-                            src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/0c6976132499951.61aa0f222520f.jpg"
-                            class="w-full rounded-[1.5rem] shadow-sm border border-gray-100" alt="Type B Plan">
-                    </div>
-                    <div class="plan-content hidden" id="ground">
-                        <img id="img-ground"
-                            src="https://images.squarespace-cdn.com/content/v1/544097e1e4b02c9e7d3761d0/1450693685035-YLZGHG5WT8IJ3DHIR8UU/3d-floor-plan-apartment.jpg"
-                            class="w-full rounded-[1.5rem] shadow-sm border border-gray-100" alt="Ground Floor Plan">
-                    </div>
-                </div>
 
                 <div>
                     <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
@@ -884,10 +851,6 @@
                         document.getElementById('map-iframe').src = project.mapUrl;
                     }
 
-                    // চ) ৩টি ট্যাবের ফ্লোর প্ল্যান ছবি পরিবর্তন
-                    if (project.floorPlanA) document.getElementById('img-typeA').src = project.floorPlanA;
-                    if (project.floorPlanB) document.getElementById('img-typeB').src = project.floorPlanB;
-                    if (project.groundFloorPlan) document.getElementById('img-ground').src = project.groundFloorPlan;
 
                     // ছ) টেকনিক্যাল স্পেসিফিকেশন (কমা দিয়ে আলাদা করে <li> লিস্ট তৈরি করার লজিক)
                     const createList = (dataStr) => {
