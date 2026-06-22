@@ -1531,7 +1531,8 @@
             // ১. ম্যাপ ইনিশিয়ালাইজ করা (মাউস হুইল স্ক্রল জুম TRUE করা হয়েছে)
             const map = L.map('interactive-project-map', {
                 zoomControl: false, // ডিফল্ট জুম কন্ট্রোল বন্ধ করা হয়েছে
-                scrollWheelZoom: true // মাউস হুইল দিয়ে জুম ইন/আউট করা যাবে
+                scrollWheelZoom: true, // মাউস হুইল দিয়ে জুম ইন/আউট করা যাবে
+                attributionControl: false // এই লাইনটি ম্যাপের নিচের ক্রেডিট লেখাটি পুরোপুরি রিমুভ করে দেবে
             });
 
             // ২. উজ্জ্বল, পরিষ্কার এবং প্রিমিয়াম ম্যাপ টাইলস (CartoDB Voyager)
